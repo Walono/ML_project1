@@ -4,13 +4,11 @@
 import numpy as np
 
 
-def compute_loss(y, tx, w):
-    """Calculate the loss.
+def compute_cost(y, tx, w):
+    """calculate the cost.
 
-    You can calculate the loss using mse or mae.
+    you can calculate the cost by mse or mae.
     """
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # TODO: compute loss by MSE / MAE
-    # ***************************************************
-    raise NotImplementedError
+    N = y.shape[0]
+    e = y-np.dot(tx,w)
+    return 1/(2*N)*np.dot(e.T,e)

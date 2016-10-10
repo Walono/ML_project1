@@ -9,30 +9,24 @@ import costs
 
 def compute_gradient(y, tx, w):
     """Compute the gradient."""
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # TODO: compute gradient and loss
-    # ***************************************************
-    raise NotImplementedError
+    N = y.shape[0]
+    e = y - np.dot(tx, w)
+    
+    return -1/N*np.dot(tx.T, e)
 
 
-def gradient_descent(y, tx, initial_w, max_iters, gamma):
+def gradient_descent(y, tx, initial_w, max_iters, gamma): 
     """Gradient descent algorithm."""
     # Define parameters to store w and loss
     ws = [initial_w]
     losses = []
     w = initial_w
     for n_iter in range(max_iters):
-        # ***************************************************
-        # INSERT YOUR CODE HERE
-        # TODO: compute gradient and loss
-        # ***************************************************
-        raise NotImplementedError
-        # ***************************************************
-        # INSERT YOUR CODE HERE
-        # TODO: update w by gradient
-        # ***************************************************
-        raise NotImplementedError
+        loss = compute_cost(y, tx, w)
+        gradient = compute_gradient(y, tx, w)
+
+        w = w - gamma*gradient
+
         # store w and loss
         ws.append(w)
         losses.append(loss)
