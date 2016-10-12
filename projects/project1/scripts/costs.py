@@ -14,7 +14,7 @@ def calculate_mae(e):
     return np.mean(np.abs(e))
 
 
-def compute_loss(y, tx, w):
+def compute_cost(y, tx, w):
     """Calculate the loss.
 
     You can calculate the loss using mse or mae.
