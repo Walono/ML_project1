@@ -90,3 +90,6 @@ ENV/
 
 #test data
 test.csv
+
+#DS_store
+.DS_Store
