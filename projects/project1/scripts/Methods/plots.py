@@ -3,6 +3,27 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# METHOD FOR CREATING A BOXPLOT
+
+def boxplot(x, ymin, ymax, title):
+    #TODO : Add Legend for axis
+
+    # Create a figure instance
+    fig = plt.figure(1, figsize=(9, 6))
+
+    # Create an axes instance
+    ax = fig.add_subplot(111)
+
+    # Create the boxplot
+    bp = ax.boxplot(x)
+
+    ax.get_xaxis().tick_bottom()
+    ax.get_yaxis().tick_left()
+
+    axes = plt.gca()
+    axes.set_ylim([ymin,ymax])
+    
+    fig.savefig('%s.pdf'%title)
 
 def cross_validation_visualization(lambds, mse_tr, mse_te):
     """visualization the curves of mse_tr and mse_te."""

@@ -3,7 +3,7 @@
 
 Stochastic Gradient Descent
 """
-from helpers import batch_iter
+from Methods.helpers import batch_iter
 
 
 def compute_stoch_gradient(y, tx, w):

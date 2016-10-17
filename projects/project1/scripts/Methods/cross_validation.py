@@ -1,7 +1,7 @@
-from costs import *
-from ridge import *
-from build_polynomial import *
-from plots import *
+from Methods.costs import *
+from Methods.ridge import *
+from Methods.build_polynomial import *
+from Methods.plots import *
 
 
 def cross_validation(y, x, k_indices, k, lambda_, degree):

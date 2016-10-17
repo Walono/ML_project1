@@ -4,7 +4,7 @@
 Gradient Descent
 """
 import numpy as np
-import costs
+import Methods.costs
 
 
 def compute_gradient(y, tx, w):
