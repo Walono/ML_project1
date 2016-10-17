@@ -1,18 +1,18 @@
 - [ ] Implementation
    - [ ] Raw Data Analysis
-      - [ ] BoxPlot
+      - [X] BoxPlot
       - [ ] Outliers
    - [ ] Features processing
       - [ ] Try several features transformations
          - [ ] Features deletion
          - [ ] Polynomial transformation
          - [ ] Other transformations (square, sqrt, log)
-      - [ ] Standardization 
-         - [ ] Normalization
+         - [X] Standardization 
+         - [X] Normalization
          - [ ] Work on the categorical variable
   - [ ] Implementation of several models (With choice of cost function, Cross Validation, Bias-Variance decomposition, and Correlation check function for each):
-     - [ ] Least Squares
-     - [ ] Ridge Regression
+     - [X] Least Squares
+     - [X] Ridge Regression
      - [ ] Least squares Gradient Descent 
      - [ ] Least squares Stochastique Gradient Descent
      - [ ] Logistic regression
