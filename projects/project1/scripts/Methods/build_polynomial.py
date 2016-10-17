@@ -11,9 +11,10 @@ def build_poly(x, degree):
         power_column = []
         for j in range (len(x)):
             power_column = np.append(power_column, np.power(x[j],i))
-            #Phi.append(x[j]**i)
-        #print(power_column.shape)    
-        #np.concatenate((Phi, power_column), axis=1)
+   
+        print(np.shape(Phi_tilde))
+        print(len(x))
+        print(np.shape([len(x),1]))
         Phi_tilde = np.concatenate((Phi_tilde,power_column.reshape([len(x),1])), axis=1)
     
-    return Phi_tilde
+    return Phi_tilde_bis
