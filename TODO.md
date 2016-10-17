@@ -5,6 +5,7 @@
    - [ ] Features processing
       - [ ] Try several features transformations
          - [ ] Features deletion
+         - [ ] Replace undefiened features by mean of the other variables
          - [ ] Polynomial transformation
          - [ ] Other transformations (square, sqrt, log)
          - [X] Standardization 
