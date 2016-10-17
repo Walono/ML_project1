@@ -11,4 +11,4 @@ def compute_loss(y, tx, w):
     """
     N = y.shape[0]
     e = y-np.dot(tx,w)
-    return 1/(2*N)*np.dot(e.T,e)
+    return e.dot(e) / (2 * len(e))
