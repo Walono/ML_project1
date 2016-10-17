@@ -1,0 +1,37 @@
+- [ ] Implementation
+   - [ ] Raw Data Analysis
+      - [ ] BoxPlot
+      - [ ] Outliers
+   - [ ] Features processing
+      - [ ] Try several features transformations
+         - [ ] Features deletion
+         - [ ] Polynomial transformation
+         - [ ] Other transformations (square, sqrt, log)
+      - [ ] Standardization 
+         - [ ] Normalization
+         - [ ] Work on the categorical variable
+  - [ ] Implementation of several models (With choice of cost function, Cross Validation, Bias-Variance decomposition, and Correlation check function for each):
+     - [ ] Least Squares
+     - [ ] Ridge Regression
+     - [ ] Least squares Gradient Descent 
+     - [ ] Least squares Stochastique Gradient Descent
+     - [ ] Logistic regression
+     - [ ] Reg logistic regression
+
+- [ ] Report
+  - [ ] Abstract 
+  - [ ] Introduction
+    - [ ] Data visualisation
+    - [ ] Data Cleaning
+    - [ ] Features Processig
+  - [ ] Models and Methods
+     - [ ] Description of the models 
+     - [ ] Comparison
+     - [ ] Cost Function
+     - [ ] Under/overfitting 
+     - [ ] Cross validation
+  - [ ] Results
+  - [ ] Discussion
+  - [ ] Summary  
+    
+  
