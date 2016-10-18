@@ -4,9 +4,16 @@
 import numpy as np
 
 def build_poly(x, degree):
-    polynomial basis function.
+    """polynomial basis function."""
     new = np.array([ [ e**i for e in x ] for i in range(degree+1) ])
     return new.T
+
+def build_poly_matrix(tx, degree):
+    res = [ build_poly(x, degree) for x in tx.T ]
+    return np.concatenate(res, axis=1)
+#poly = np.concatenate( [ build_poly(x, degree) for x in tx ], axis=1)
+        
+    
 """def build_poly(x, degree):
     polynomial basis functions for input data x, for j=0 up to j=degree.  
     Phi_tilde = np.ones((len(x),1))
