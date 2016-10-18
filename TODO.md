@@ -18,6 +18,7 @@
      - [ ] Least squares Stochastique Gradient Descent
      - [ ] Logistic regression
      - [ ] Reg logistic regression
+     - [ ] Binay Classification
   - [ ] Clean Code
   - [ ] Create a run.py file with the final version (what model we choose with its preprocessing)
   
