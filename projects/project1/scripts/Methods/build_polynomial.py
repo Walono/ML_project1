@@ -11,19 +11,18 @@ def build_poly(x, degree):
 def build_poly_matrix(tx, degree):
     res = [ build_poly(x, degree) for x in tx.T ]
     return np.concatenate(res, axis=1)
-#poly = np.concatenate( [ build_poly(x, degree) for x in tx ], axis=1)
-        
-    
+
 """def build_poly(x, degree):
-    polynomial basis functions for input data x, for j=0 up to j=degree.  
+    polynomial basis functions for input data x, for j=0 up to j=degree.    
     Phi_tilde = np.ones((len(x),1))
     for i in range(1, degree+1):
         power_column = []
         for j in range (len(x)):
             power_column = np.append(power_column, np.power(x[j],i))
-            #Phi.append(x[j]**i)
-        #print(power_column.shape)    
-        #np.concatenate((Phi, power_column), axis=1)
+   
+        print(np.shape(Phi_tilde))
+        print(len(x))
+        print(np.shape([len(x),1]))
         Phi_tilde = np.concatenate((Phi_tilde,power_column.reshape([len(x),1])), axis=1)
-
-    return Phi_tilde"""
+    
+    return Phi_tilde_bis"""

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from costs import * 
+from Methods.costs import * 
 
 def ridge_regression(y, tx, lamb):
     """implement ridge regression."""

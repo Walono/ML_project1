@@ -1,0 +1,41 @@
+- [ ] Implementation
+   - [ ] Raw Data Analysis
+      - [X] BoxPlot
+      - [ ] Outliers
+   - [ ] Features processing
+      - [ ] Try several features transformations
+         - [ ] Features deletion
+         - [ ] Replace undefiened features by mean of the other variables
+         - [ ] Polynomial transformation
+         - [ ] Other transformations (square, sqrt, log)
+         - [X] Standardization 
+         - [X] Normalization
+         - [ ] Work on the categorical variable
+  - [ ] Implementation of several models (With choice of cost function, Cross Validation, Bias-Variance decomposition, and Correlation check function for each):
+     - [X] Least Squares
+     - [X] Ridge Regression
+     - [ ] Least squares Gradient Descent 
+     - [ ] Least squares Stochastique Gradient Descent
+     - [ ] Logistic regression
+     - [ ] Reg logistic regression
+  - [ ] Clean Code
+  - [ ] Create a run.py file with the final version (what model we choose with its preprocessing)
+  
+
+- [ ] Report
+  - [ ] Abstract 
+  - [ ] Introduction
+    - [ ] Data visualisation
+    - [ ] Data Cleaning
+    - [ ] Features Processig
+  - [ ] Models and Methods
+     - [ ] Description of the models 
+     - [ ] Comparison
+     - [ ] Cost Function
+     - [ ] Under/overfitting 
+     - [ ] Cross validation
+  - [ ] Results
+  - [ ] Discussion
+  - [ ] Summary  
+    
+  
