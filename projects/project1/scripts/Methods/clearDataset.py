@@ -2,20 +2,11 @@
 """some helper functions."""
 import numpy as np
 
-#####TODO: Suppress this part
-from Methods.proj1_helpers import *
-DATA_TRAIN_PATH = 'csv/train.csv' # TODO: download train data and supply path here 
-y, tX, ids = load_csv_data(DATA_TRAIN_PATH)
-tX_tra = tX.T
-COLUMN_PERCENT = 0.5
-#####
-
-
-def deleteNoneWantedData(tX, factor) :
+def deleteNoneWantedData(tX, percentFactor) :
 
     #Detect all column we need to suppress depend of the percent of -999 in there
     columnToSuppress = []
-    columnTreshold = len(tX) * factor
+    columnTreshold = len(tX) * percentFactor
 
     for column in range(len(tX[0])) :
         columnCounter = 0
@@ -38,7 +29,7 @@ def deleteNoneWantedData(tX, factor) :
 def deleteUnwantedLine(tX) :
     newTX = []
 	
-    #Suppress all line containing -999
+    #Suppress all line containing -999.0
     for row in tX :
         isWanted = True
         for columnIndex in range(len(tX[0])) :
@@ -49,11 +40,27 @@ def deleteUnwantedLine(tX) :
             newTX.append(row)
     return newTX	
 	
-#####TODO: Suppress this part
-testT = deleteNoneWantedData(tX, COLUMN_PERCENT)
-print(str(len(testT[0])))
-testT2 = deleteUnwantedLine(testT)
-print(str(len(testT2)))
-testT3 = deleteUnwantedLine(tX)
-print(str(len(testT3)))
-#####
+def averageData(tX) :
+    newTX = []
+
+    #Calculate average for each column without the -999.0
+    colAverage = []
+    for column in range(len(tX[0])) :
+        totalAcceeptedValue = 0
+        numberAcceptedValue = 0
+        for row in tX :
+            if row[column] != -999.0 :
+                totalAcceeptedValue += row[column]
+                numberAcceptedValue += 1
+        if numberAcceptedValue == 0 :
+            colAverage.append(0)
+        else :
+            colAverage.append(totalAcceeptedValue/numberAcceptedValue)
+    
+	#Replace each -999.0 by the coresponding column average
+    for row in tX :
+        for column in range(len(tX[0])) :
+            if row[column] == -999.0 :
+                row[column] = colAverage[column]
+        newTX.append(row)
+    return newTX
