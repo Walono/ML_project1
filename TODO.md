@@ -1,4 +1,6 @@
 - [ ] Implementation
+   - [ ] Implement Exp()
+   - [ ] Implement Log()
    - [ ] Raw Data Analysis
       - [X] BoxPlot
       - [ ] Outliers
