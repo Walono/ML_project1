@@ -1,6 +1,7 @@
 from Methods.costs import *
 from Methods.ridge import *
 from Methods.least_squares import *
+from Methods.logistic import *
 from Methods.build_polynomial import *
 from Methods.plots import *
 from Methods.proj1_helpers import *
@@ -26,6 +27,7 @@ def cross_validation(y, x, k_indices, k, lambda_):
     x_te = x[k_indices[k]]
    
     w_tr = ridge_regression(y_tr, x_tr, lambda_)
+    #m, w_tr = least_squares(y_tr, x_tr)
     e_tr = y_tr - predict_labels(w_tr, x_tr)
     e_te = y_te - predict_labels(w_tr, x_te)
     loss_tr = calculate_mse(e_tr)
@@ -39,8 +41,9 @@ def cross_validation(y, x, k_indices, k, lambda_):
 def cross_validation_demo(y,tX):
     seed = 1
     degree = 7
-    k_fold = 4
+    k_fold = 10
     lambdas = np.logspace(-5, 1, 20)
+    #lambdas = [0]
     # split data in k fold
     k_indices = build_k_indices(y, k_fold, seed)
     # define lists to store the loss of training data and test data
@@ -58,4 +61,5 @@ def cross_validation_demo(y,tX):
         rmse_te.append(np.sqrt(2/k_fold * tot_loss_te))
     plt.boxplot(rmse_te)
     plt.show()
+    print(rmse_te)
     cross_validation_visualization(lambdas, rmse_tr, rmse_te)

@@ -1,0 +1,18 @@
+No TRANSFORMATION:
+cleaned version 50%:
+  ridge regression:
+    rmse ~= 1.153
+
+
+averaged version:
+  ridge regression:
+     rmse ~= 1.018
+
+SQUARE TRANSFORMATION:
+cleaned version 50%:
+  ridge regression:
+    rmse ~= 1.017
+
+averaged version:
+  ridge regression:
+    rmse ~= 0.95
