@@ -3,6 +3,7 @@ from Methods.ridge import *
 from Methods.least_squares import *
 from Methods.build_polynomial import *
 from Methods.plots import *
+from Methods.proj1_helpers import *
 
 def build_k_indices(y, k_fold, seed):
     """build k indices for k-fold."""
@@ -25,8 +26,12 @@ def cross_validation(y, x, k_indices, k, lambda_):
     x_te = x[k_indices[k]]
    
     w_tr = ridge_regression(y_tr, x_tr, lambda_)
-    loss_tr = compute_mse(y_tr, x_tr, w_tr)
-    loss_te = compute_mse(y_te, x_te, w_tr)
+    e_tr = y_tr - predict_labels(w_tr, x_tr)
+    e_te = y_te - predict_labels(w_tr, x_te)
+    loss_tr = calculate_mse(e_tr)
+    loss_te = calculate_mse(e_te)
+    #loss_tr = compute_mse(y_tr, x_tr, w_tr)
+    #loss_te = compute_mse(y_te, x_te, w_tr)
     return loss_tr, loss_te
 
 
@@ -35,7 +40,7 @@ def cross_validation_demo(y,tX):
     seed = 1
     degree = 7
     k_fold = 4
-    lambdas = np.logspace(-4, 2, 30)
+    lambdas = np.logspace(-5, 1, 20)
     # split data in k fold
     k_indices = build_k_indices(y, k_fold, seed)
     # define lists to store the loss of training data and test data
