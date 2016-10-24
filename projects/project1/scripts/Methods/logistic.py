@@ -1,10 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from Methods.proj1_helpers import *
+from Methods.costs import *
 
 def sigmoid(t):
     """apply sigmoid function on t."""
-    sig = np.exp(t) / (1 + np.exp(t))
+    sig = 1 / (1 + np.exp(-t))
     return sig
 
 
@@ -18,13 +19,13 @@ def calculate_loss(y, tx, w):
         loss += l[0] - m[0]
     #log_array = np.array([ np.log(1 + np.exp(np.dot(tx[n], w))) - y*np.dot(tx[n], w) for n in range(N)])
     #cost = np.sum(log_array)
-    #print("Loss is :", loss)
     return loss
 
 def calculate_gradient(y, tx, w):
     """compute the gradient of loss."""
     sig = sigmoid(np.dot(tx, w))
-    grad = np.dot(tx.T, sig - y)
+    temp = sig[:,0] - y
+    grad = np.dot(tx.T, temp)
     # ***************************************************
     # INSERT YOUR CODE HERE
     # TODO
@@ -37,26 +38,30 @@ def learning_by_gradient_descent(y, tx, w, gamma):
     Return the loss and the updated w.
     """
     loss = calculate_loss(y, tx, w)
+    #loss = compute_loss(y, tx, w[:,0])
+
     grad = calculate_gradient(y, tx, w)
 
-    w = w - gamma * grad
+    w = w - gamma * np.array([grad]).T
     return loss, w
 
 def logistic_regression_gradient_descent_demo(y, tx):
     # init parameters
-    max_iter = 10000
+    max_iter = 4000
     threshold = 1e-8
-    gamma = 0.01
+    gamma = 0.0000001
     losses = []
 
     w = np.zeros((tx.shape[1], 1))
+    #w = np.array([w]).T
+    print(tx.shape[1], w.shape)
 
     # start the logistic regression
     for iter in range(max_iter):
         # get loss and update w.
         loss, w = learning_by_gradient_descent(y, tx, w, gamma)
         # log info
-        if iter % 10 == 0:
+        if iter % 5 == 0:
             print("Current iteration={i}, the loss={l}".format(i=iter, l=loss))
         # converge criteria
         losses.append(loss)

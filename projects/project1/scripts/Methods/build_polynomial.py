@@ -5,12 +5,14 @@ import numpy as np
 
 def build_poly(x, degree):
     """polynomial basis function."""
-    new = np.array([ [ e**i for e in x ] for i in range(degree+1) ])
+    new = np.array([ [ e**i for e in x ] for i in range(1,degree+1) ])
     return new.T
 
 def build_poly_matrix(tx, degree):
     res = [ build_poly(x, degree) for x in tx.T ]
-    return np.concatenate(res, axis=1)
+    conc = np.concatenate(res, axis=1)
+    one = np.ones((tx.shape[0], 1))
+    return np.concatenate([one, conc], axis=1)
 
 """def build_poly(x, degree):
     polynomial basis functions for input data x, for j=0 up to j=degree.    

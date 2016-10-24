@@ -41,8 +41,8 @@ def cross_validation(y, x, k_indices, k, lambda_):
 def cross_validation_demo(y,tX):
     seed = 1
     degree = 7
-    k_fold = 10
-    lambdas = np.logspace(-5, 1, 20)
+    k_fold = 4
+    lambdas = np.logspace(-5, 0, 10)
     #lambdas = [0]
     # split data in k fold
     k_indices = build_k_indices(y, k_fold, seed)
