@@ -43,9 +43,9 @@ def learning_by_gradient_descent(y, tx, w, gamma):
     grad = calculate_gradient(y, tx, w)
 
     w = w - gamma * np.array([grad]).T
-    return loss, w
+    return w
 
-def logistic_regression_gradient_descent_demo(y, tx):
+def logistic_regression_gradient_descent_demo(y, tx, **kwargs):
     # init parameters
     max_iter = 4000
     threshold = 1e-8

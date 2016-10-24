@@ -15,9 +15,12 @@ def compute_gradient(y, tx, w):
     return -1/N*np.dot(tx.T, e)
 
 
-def gradient_descent(y, tx, initial_w, max_iters, gamma): 
+def gradient_descent(y, tx, **kwargs): 
     """Gradient descent algorithm."""
     # Define parameters to store w and loss
+    initial_w = kwargs.get('initial_w')
+    max_iters = kwargs.get('max_iters')
+    gamma = kwargs.get('gamma')
     ws = [initial_w]
     losses = []
     w = initial_w
@@ -33,4 +36,4 @@ def gradient_descent(y, tx, initial_w, max_iters, gamma):
         print("Gradient Descent({bi}/{ti}): loss={l}, w0={w0}, w1={w1}".format(
               bi=n_iter, ti=max_iters - 1, l=loss, w0=w[0], w1=w[1]))
 
-    return losses, ws
+    return ws
