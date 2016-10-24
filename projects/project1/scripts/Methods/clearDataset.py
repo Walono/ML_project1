@@ -24,7 +24,7 @@ def deleteNoneWantedData(tX, percentFactor) :
         newTX.append(newRow)
 
 	
-    return newTX
+    return np.array(newTX)
 
 def deleteUnwantedLine(tX) :
     newTX = []
@@ -38,7 +38,7 @@ def deleteUnwantedLine(tX) :
                 break
         if isWanted : 
             newTX.append(row)
-    return newTX	
+    return np.array(newTX)	
 	
 def averageData(tX) :
     newTX = []
@@ -63,4 +63,4 @@ def averageData(tX) :
             if row[column] == -999.0 :
                 row[column] = colAverage[column]
         newTX.append(row)
-    return newTX
+    return np.array(newTX)
