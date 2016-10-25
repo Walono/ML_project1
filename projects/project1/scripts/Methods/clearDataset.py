@@ -40,7 +40,7 @@ def deleteUnwantedLine(tX) :
             newTX.append(row)
     return np.array(newTX)	
 	
-def averageData(tX) :
+def averageData(tX, tX_test=None) :
     newTX = []
 
     #Calculate average for each column without the -999.0
@@ -63,4 +63,13 @@ def averageData(tX) :
             if row[column] == -999.0 :
                 row[column] = colAverage[column]
         newTX.append(row)
+    if tX_test != None:
+        newTX_te = []
+        for row in tX_test :
+            for column in range(0,30) :
+                if row[column] == -999.0 :
+                    row[column] = colAverage[column]
+            newTX_te.append(row)
+        return np.array(newTX_te)    
+     
     return np.array(newTX)

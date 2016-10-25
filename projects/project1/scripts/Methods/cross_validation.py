@@ -28,10 +28,13 @@ def cross_validation(y, x, k_indices, k, model, **kwargs):
     w_tr = model(y_tr, x_tr, **kwargs)
     
     prediction = np.dot(w_tr,x_te.T)
-
+    
+    print(prediction)
     prediction[prediction < 0] = -1
     prediction[prediction >= 0] = 1
 
+    print(prediction)
+    print(y_te)
     accuracy = np.sum(y_te == prediction) / float(len(y_te))
     
     
@@ -42,5 +45,5 @@ def cross_validation(y, x, k_indices, k, model, **kwargs):
     loss_te = calculate_mse(e_te)
     #loss_tr = compute_mse(y_tr, x_tr, w_tr)
     #loss_te = compute_mse(y_te, x_te, w_tr)
-    return loss_tr, loss_te, accuracy
+    return loss_tr, loss_te, accuracy, w_tr
 

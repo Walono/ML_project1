@@ -3,6 +3,17 @@
 
 import numpy as np
 
+def add_feature_test(y, x, x_test, tX_test, method, **kwargs):
+    prev_corr = abs(np.corrcoef(y,x)[1,0])
+    x_transform = method(x, **kwargs)
+    x_transform_test = method(x_test, **kwargs)
+    new_corr = abs(np.corrcoef(y,x_transform[0])[1,0])
+    newtX = tX_test
+    if new_corr > prev_corr :
+        newtX = np.vstack((newtX.T, x_transform_test[0]))
+        newtX = newtX.T
+    return newtX
+
 def add_feature(y, x, tX, method, **kwargs):
     prev_corr = abs(np.corrcoef(y,x)[1,0])
     x_transform = method(x, **kwargs)
@@ -12,6 +23,10 @@ def add_feature(y, x, tX, method, **kwargs):
         newtX = np.vstack((newtX.T, x_transform[0]))
         newtX = newtX.T
     return newtX
+
+def sqrt_def(x, **kwargs):
+    new = np.array([np.sqrt(x)])
+    return new
 
 def log_def(x, **kwargs):
     new = np.array([np.log(x)])
