@@ -4,18 +4,13 @@
 import numpy as np
 
 def add_feature(y, x, tX, method, **kwargs):
-    print('x.shape')
-    print(x.shape)
-    print('y.shape')
-    print(y.shape)
-    print('tX.shape')
-    print(tX.shape)
     prev_corr = abs(np.corrcoef(y,x)[1,0])
     x_transform = method(x, **kwargs)
     new_corr = abs(np.corrcoef(y,x_transform[0])[1,0])
     newtX = tX
     if new_corr > prev_corr :
         newtX = np.vstack((newtX.T, x_transform[0]))
+        newtX = newtX.T
     return newtX
 
 def log_def(x, **kwargs):
