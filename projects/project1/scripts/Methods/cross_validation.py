@@ -16,8 +16,7 @@ def build_k_indices(y, k_fold, seed):
                  for k in range(k_fold)]
     return np.array(k_indices)
 
-def cross_validation(y, x, k_indices, k, lambda_):
-    """return the loss of ridge regression."""
+def cross_validation(y, x, k_indices, k, model, **kwargs):
     k_fold = list(range(k_indices.shape[0]))
     k_fold.remove(k)
     indices_tr = k_indices[k_fold].ravel()
@@ -26,7 +25,16 @@ def cross_validation(y, x, k_indices, k, lambda_):
     y_te = y[k_indices[k]]
     x_te = x[k_indices[k]]
    
-    w_tr = ridge_regression(y_tr, x_tr, lambda_)
+    w_tr = model(y_tr, x_tr, **kwargs)
+    
+    prediction = np.dot(w_tr,x_te.T)
+
+    prediction[prediction < 0] = -1
+    prediction[prediction >= 0] = 1
+
+    accuracy = np.sum(y_te == prediction) / float(len(y_te))
+    
+    
     #m, w_tr = least_squares(y_tr, x_tr)
     e_tr = y_tr - predict_labels(w_tr, x_tr)
     e_te = y_te - predict_labels(w_tr, x_te)
@@ -34,32 +42,5 @@ def cross_validation(y, x, k_indices, k, lambda_):
     loss_te = calculate_mse(e_te)
     #loss_tr = compute_mse(y_tr, x_tr, w_tr)
     #loss_te = compute_mse(y_te, x_te, w_tr)
-    return loss_tr, loss_te
+    return loss_tr, loss_te, accuracy
 
-
-
-def cross_validation_demo(y,tX):
-    seed = 3
-    degree = 7
-    k_fold = 4
-    lambdas = np.logspace(-5, -7, 10)
-    #lambdas = [0]
-    # split data in k fold
-    k_indices = build_k_indices(y, k_fold, seed)
-    # define lists to store the loss of training data and test data
-    rmse_tr = []
-    rmse_te = []
-    k_list = list(range(k_fold))
-    for lamb in lambdas:
-        tot_loss_tr = 0
-        tot_loss_te = 0
-        for k in k_list:
-            loss_tr, loss_te = cross_validation(y, tX, k_indices, k, lamb)
-            tot_loss_tr += loss_tr
-            tot_loss_te += loss_te
-        rmse_tr.append(np.sqrt(2/k_fold * tot_loss_tr))
-        rmse_te.append(np.sqrt(2/k_fold * tot_loss_te))
-    plt.boxplot(rmse_te)
-    plt.show()
-    print(rmse_te)
-    cross_validation_visualization(lambdas, rmse_tr, rmse_te)

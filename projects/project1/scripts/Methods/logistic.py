@@ -63,11 +63,12 @@ def learning_by_gradient_descent(y, tx, w, gamma):
     w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
     return loss, w
 
-def logistic_regression_gradient_descent_demo(y, tx, batch_size):
+def logistic_regression_gradient_descent_demo(y, tx, **kwargs):
     # init parameters
     max_iter = 1000
     threshold = 1e-8
     gamma = 0.02
+    batch_size = kwargs['batch_size']
     losses = []
 
     w = np.zeros((tx.shape[1], 1))
