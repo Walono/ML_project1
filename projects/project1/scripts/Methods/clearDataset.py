@@ -63,13 +63,13 @@ def averageData(tX, tX_test=None) :
             if row[column] == -999.0 :
                 row[column] = colAverage[column]
         newTX.append(row)
-    if tX_test != None:
+    if tX_test is not None:
         newTX_te = []
         for row in tX_test :
             for column in range(0,30) :
                 if row[column] == -999.0 :
                     row[column] = colAverage[column]
             newTX_te.append(row)
-        return np.array(newTX_te)    
+        return np.array(newTX), np.array(newTX_te)    
      
     return np.array(newTX)

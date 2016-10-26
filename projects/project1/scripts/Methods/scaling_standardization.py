@@ -5,11 +5,11 @@ import numpy as np
 # DATA SCALING method:
 
 def data_scaling(x, x_te=None):
-    minma_x = (x - x.min()) / (x.max() - x.min())
-    if x_te != None:
+    minima_x = (x - x.min()) / (x.max() - x.min())
+    if x_te is not None:
         minima_x_te = (x_te - x.min()) / (x.max() - x.min())
-        return minima_x_te.T
-    return minma_x.T
+        return minima_x, minima_x_te
+    return minima_x
 
 # DATA STANDARDIZATION METHOD:
 
