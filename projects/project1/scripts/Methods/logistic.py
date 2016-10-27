@@ -19,7 +19,7 @@ def calculate_loss(y, tx, w):
         loss += l[0] - m[0]
     #log_array = np.array([ np.log(1 + np.exp(np.dot(tx[n], w))) - y*np.dot(tx[n], w) for n in range(N)])
     #cost = np.sum(log_array)
-    return loss
+    return loss/N
 
 def calculate_gradient(y, tx, w):
     """compute the gradient of loss."""
@@ -32,6 +32,22 @@ def calculate_gradient(y, tx, w):
     # ***************************************************
     return grad
 
+def calculate_hessian(y, tx, w):
+    """return the hessian of the loss function."""
+    N = len(y)
+    S = np.zeros((N, N))
+    for i in range(N):
+        prod = sigmoid(np.dot(tx[i], w))[0]
+        S[i, i] = prod * (1 - prod)
+    h_temp = np.dot(S, tx)
+    H = np.dot(tx.T, h_temp)
+    #print(H, "PLOP")
+    # ***************************************************
+    # INSERT YOUR CODE HERE
+    # calculate hessian: TODO
+    # ***************************************************
+    return H
+
 def learning_by_gradient_descent(y, tx, w, gamma):
     """
     Do one step of gradient descen using logistic regression.
@@ -41,15 +57,18 @@ def learning_by_gradient_descent(y, tx, w, gamma):
     #loss = compute_loss(y, tx, w[:,0])
 
     grad = calculate_gradient(y, tx, w)
-
-    w = w - gamma * np.array([grad]).T
-    return w
+    hess = calculate_hessian(y, tx, w)
+    hess_inv = np.linalg.inv(hess)
+    #w = w - gamma * np.array([grad]).T
+    w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
+    return loss, w
 
 def logistic_regression_gradient_descent_demo(y, tx, **kwargs):
     # init parameters
-    max_iter = 4000
+    max_iter = 300
     threshold = 1e-8
-    gamma = 0.0000001
+    gamma = 0.05
+    batch_size = kwargs['batch_size']
     losses = []
 
     w = np.zeros((tx.shape[1], 1))
@@ -59,9 +78,11 @@ def logistic_regression_gradient_descent_demo(y, tx, **kwargs):
     # start the logistic regression
     for iter in range(max_iter):
         # get loss and update w.
-        loss, w = learning_by_gradient_descent(y, tx, w, gamma)
+        batch_iterator = batch_iter(y, tx, batch_size)
+        batch_y, batch_tx = next(batch_iterator)
+        loss, w = learning_by_gradient_descent(batch_y, batch_tx, w, gamma)
         # log info
-        if iter % 5 == 0:
+        if iter % 10 == 0:
             print("Current iteration={i}, the loss={l}".format(i=iter, l=loss))
         # converge criteria
         losses.append(loss)
@@ -71,3 +92,28 @@ def logistic_regression_gradient_descent_demo(y, tx, **kwargs):
     #visualization(y, x, mean_x, std_x, w, "classification_by_logistic_regression_gradient_descent")
     print("The loss={l}".format(l=calculate_loss(y, tx, w)))
     return w
+
+def batch_iter(y, tx, batch_size, num_batches=1, shuffle=True):
+    """
+    Generate a minibatch iterator for a dataset.
+    Takes as input two iterables (here the output desired values 'y' and the input data 'tx')
+    Outputs an iterator which gives mini-batches of `batch_size` matching elements from `y` and `tx`.
+    Data can be randomly shuffled to avoid ordering in the original data messing with the randomness of the minibatches.
+    Example of use :
+    for minibatch_y, minibatch_tx in batch_iter(y, tx, 32):
+        <DO-SOMETHING>
+    """
+    data_size = len(y)
+
+    if shuffle:
+        shuffle_indices = np.random.permutation(np.arange(data_size))
+        shuffled_y = y[shuffle_indices]
+        shuffled_tx = tx[shuffle_indices]
+    else:
+        shuffled_y = y
+        shuffled_tx = tx
+    for batch_num in range(num_batches):
+        start_index = batch_num * batch_size
+        end_index = min((batch_num + 1) * batch_size, data_size)
+        if start_index != end_index:
+            yield shuffled_y[start_index:end_index], shuffled_tx[start_index:end_index]

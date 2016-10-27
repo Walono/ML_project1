@@ -51,7 +51,7 @@ def build_poly(x, **kwargs):
     return new.T
 
 def build_poly_matrix(tx, degree):
-    res = [ build_poly(x, degree) for x in tx.T ]
+    res = [ build_poly(x, degree=degree) for x in tx.T ]
     conc = np.concatenate(res, axis=1)
     one = np.ones((tx.shape[0], 1))
     return np.concatenate([one, conc], axis=1)
