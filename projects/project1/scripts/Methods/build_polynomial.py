@@ -25,6 +25,15 @@ def sqrt_def(x, **kwargs):
     new = np.array([np.sqrt(x)])
     return new
 
+def exp_def(x, **kwargs):
+    new = np.array([np.exp(x)])
+    return new
+
+def cos_def(x, **kwargs):
+    new = np.array([np.cos(x)])
+    return new
+
+
 def log_def(x, **kwargs):
     new = np.array([np.log(x)])
     return new
