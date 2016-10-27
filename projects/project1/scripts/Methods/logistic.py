@@ -65,9 +65,9 @@ def learning_by_gradient_descent(y, tx, w, gamma):
 
 def logistic_regression_gradient_descent_demo(y, tx, **kwargs):
     # init parameters
-    max_iter = 300
+    max_iter = 2000
     threshold = 1e-8
-    gamma = 0.05
+    gamma = 0.0003
     batch_size = kwargs['batch_size']
     losses = []
 

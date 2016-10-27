@@ -3,9 +3,9 @@
 import numpy as np
 from Methods.costs import * 
 
-def ridge_regression(y, tx, **kwargs):
+def ridge_regression(y, tx, lambda_):
     """implement ridge regression."""
-    lamb = kwargs.get('lamb')
+    lamb = lambda_
     M = tx.shape[1]
     N = len(y)
     big_lamb = lamb*2*N

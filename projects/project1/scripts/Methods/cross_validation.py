@@ -25,16 +25,19 @@ def cross_validation(y, x, k_indices, k, model, **kwargs):
     y_te = y[k_indices[k]]
     x_te = x[k_indices[k]]
    
-    w_tr = model(y_tr, x_tr, **kwargs)
+    if 'lambda_' in kwargs:
+        w_tr = model(y_tr, x_tr, kwargs.get('lambda_'))
+    else:
+        w_tr = model(y_tr, x_tr)
     
     prediction = np.dot(w_tr,x_te.T)
     
-    print(prediction)
+    #print(prediction)
     prediction[prediction < 0] = -1
     prediction[prediction >= 0] = 1
 
-    print(prediction)
-    print(y_te)
+    #print(prediction)
+    #print(y_te)
     accuracy = np.sum(y_te == prediction) / float(len(y_te))
     
     
