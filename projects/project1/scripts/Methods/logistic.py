@@ -19,7 +19,7 @@ def calculate_loss(y, tx, w):
         loss += l[0] - m[0]
     #log_array = np.array([ np.log(1 + np.exp(np.dot(tx[n], w))) - y*np.dot(tx[n], w) for n in range(N)])
     #cost = np.sum(log_array)
-    return loss/N
+    return loss
 
 def calculate_gradient(y, tx, w):
     """compute the gradient of loss."""
@@ -102,20 +102,15 @@ def learning_by_penalized_gradient(y, tx, w, gamma, lambda_):
     Return the loss and updated w.
     """
     # ***************************************************
-    # INSERT YOUR CODE HERE
-    # return loss, gradient and hessian: TODO
+    # return loss, gradient and hessian
     # ***************************************************
     loss, grad, hess = penalized_logistic_regression(y, tx, w, lambda_)
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # update w: TODO
-    # ***************************************************
     hess_inv = np.linalg.inv(hess)
     w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
     #w = w - gamma * np.array([grad]).T
     return loss, w
 
-def logistic_regression_penalized_gradient_descent(y, tx, gamma, max_iters, lambda_):
+def logistic_regression_penalized_gradient_descent(y, tx, lambda_, gamma, max_iters):
     # init parameters
     threshold = 1e-8
     losses = []

@@ -5,7 +5,7 @@ import numpy as np
 
 
 def add_feature(y, x, tX, method,  tX_test, x_test, **kwargs):
-   """ function that adds method(x) to tX if corr(y, method(x)) > corr(y, prev_method(x))) """
+    """ function that adds method(x) to tX if corr(y, method(x)) > corr(y, prev_method(x))) """
     prev_corr = abs(np.corrcoef(y,x)[1,0])
     
     x_transform = method(x, **kwargs)
