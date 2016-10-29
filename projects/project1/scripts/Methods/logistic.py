@@ -26,10 +26,6 @@ def calculate_gradient(y, tx, w):
     sig = sigmoid(np.dot(tx, w))
     temp = sig[:,0] - y
     grad = np.dot(tx.T, temp)
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # TODO
-    # ***************************************************
     return grad
 
 def calculate_hessian(y, tx, w):
@@ -63,20 +59,17 @@ def learning_by_gradient_descent(y, tx, w, gamma):
     w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
     return loss, w
 
-def logistic_regression_gradient_descent_demo(y, tx, **kwargs):
+def logistic_regression_gradient_descent(y, tx, gamma, max_iters):
     # init parameters
-    max_iter = 2000
     threshold = 1e-8
-    gamma = 0.0003
-    batch_size = kwargs['batch_size']
+    batch_size = 3000
     losses = []
 
     w = np.zeros((tx.shape[1], 1))
     #w = np.array([w]).T
-    print(tx.shape[1], w.shape)
 
     # start the logistic regression
-    for iter in range(max_iter):
+    for iter in range(max_iters):
         # get loss and update w.
         batch_iterator = batch_iter(y, tx, batch_size)
         batch_y, batch_tx = next(batch_iterator)
@@ -90,6 +83,59 @@ def logistic_regression_gradient_descent_demo(y, tx, **kwargs):
             break
     # visualization
     #visualization(y, x, mean_x, std_x, w, "classification_by_logistic_regression_gradient_descent")
+    print("The scaled loss={l}".format(l=calculate_loss(y, tx, w)))
+    return w
+
+def penalized_logistic_regression(y, tx, w, lambda_):
+    """return the loss, gradient, and hessian."""
+    # ***************************************************
+    loss = calculate_loss(y, tx, w) + lambda_ * np.dot(w.T, w) / len(y)
+    grad = calculate_gradient(y, tx, w) + lambda_ * w[:,0]
+    hess = calculate_hessian(y, tx, w) + lambda_ * np.identity(tx.shape[1])
+    # return loss, gradient, and hessian
+    # ***************************************************
+    return loss, grad, hess
+
+def learning_by_penalized_gradient(y, tx, w, gamma, lambda_):
+    """
+    Do one step of gradient descent, using the penalized logistic regression.
+    Return the loss and updated w.
+    """
+    # ***************************************************
+    # INSERT YOUR CODE HERE
+    # return loss, gradient and hessian: TODO
+    # ***************************************************
+    loss, grad, hess = penalized_logistic_regression(y, tx, w, lambda_)
+    # ***************************************************
+    # INSERT YOUR CODE HERE
+    # update w: TODO
+    # ***************************************************
+    hess_inv = np.linalg.inv(hess)
+    w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
+    #w = w - gamma * np.array([grad]).T
+    return loss, w
+
+def logistic_regression_penalized_gradient_descent(y, tx, gamma, max_iters, lambda_):
+    # init parameters
+    threshold = 1e-8
+    losses = []
+    batch_size = 3000
+
+    w = np.zeros((tx.shape[1], 1))
+
+    # start the logistic regression
+    for iter in range(max_iters):
+        batch_iterator = batch_iter(y, tx, batch_size)
+        batch_y, batch_tx = next(batch_iterator)
+        # get loss and update w.
+        loss, w = learning_by_penalized_gradient(batch_y, batch_tx, w, gamma, lambda_)
+        # log info
+        if iter % 10 == 0:
+            print("Current iteration={i}, the loss={l}".format(i=iter, l=loss))
+        # converge criteria
+        losses.append(loss)
+        if len(losses) > 1 and np.abs(losses[-1] - losses[-2]) < threshold:
+            break
     print("The loss={l}".format(l=calculate_loss(y, tx, w)))
     return w
 
