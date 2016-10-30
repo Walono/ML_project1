@@ -4,7 +4,9 @@ import numpy as np
 
 def deleteNoneWantedData(tX, percentFactor) :
 
-    #Detect all column we need to suppress depend of the percent of -999 in there
+    """Detect and suppress column that have more than 
+    'percentFactor' percent of -999 in ther
+    """
     columnToSuppress = []
     columnTreshold = len(tX) * percentFactor
 
@@ -17,7 +19,6 @@ def deleteNoneWantedData(tX, percentFactor) :
                     columnToSuppress.append(column)
                     break
 
-    #Suppress unwanted column in each row
     newTX = []
     for row in tX :
         newRow = np.delete(row, columnToSuppress)
@@ -27,6 +28,7 @@ def deleteNoneWantedData(tX, percentFactor) :
     return np.array(newTX)
 
 def deleteUnwantedLine(tX) :
+    "Suppress all line that contains a -999 in it"
     newTX = []
 	
     #Suppress all line containing -999.0
@@ -41,6 +43,7 @@ def deleteUnwantedLine(tX) :
     return np.array(newTX)	
 	
 def averageData(tX, tX_test=None) :
+    """Calculatethe average of a column without -999 and then replace it. """
     newTX = []
 
     #Calculate average for each column without the -999.0
