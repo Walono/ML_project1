@@ -11,6 +11,9 @@ Fabien Zellweger : 209450 <br />
 - csv folder. Empty because the train.csv and test.csv are too big for us. You have to add they in this folder
 - Methods folder contains all the helper *.py file used by run.py and all our tests.
 
+# Run.py WARNING !!!!
+- run.py gives our best predictions on Ubuntu 14.04 x64 kernel v.3.16 but apparently have error on Windows and MacOSx (singular hessian matrix)
+
 ## Mandatory Methods Warning
 - For least_squares_GD and least_squares_SGD the init weights MUST be a 1D vector
 
