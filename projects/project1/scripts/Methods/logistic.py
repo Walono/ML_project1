@@ -59,7 +59,7 @@ def learning_by_gradient_descent(y, tx, w, gamma):
     w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
     return loss, w
 
-def logistic_regression_gradient_descent(y, tx, gamma, max_iters):
+def logistic_regression_gradient_descent_n(y, tx, gamma, max_iters):
     # init parameters
     threshold = 1e-8
     batch_size = 3000
@@ -110,7 +110,7 @@ def learning_by_penalized_gradient(y, tx, w, gamma, lambda_):
     #w = w - gamma * np.array([grad]).T
     return loss, w
 
-def logistic_regression_penalized_gradient_descent(y, tx, lambda_, gamma, max_iters):
+def logistic_regression_penalized_gradient_descent_n(y, tx, lambda_, gamma, max_iters):
     # init parameters
     threshold = 1e-8
     losses = []
