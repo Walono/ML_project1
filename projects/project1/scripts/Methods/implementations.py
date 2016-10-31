@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from costs import *
+from Methods.costs import *
 
 
 def compute_gradient(y, tx, w):
