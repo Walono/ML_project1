@@ -3,9 +3,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# METHOD FOR CREATING A BOXPLOT
 
 def boxplot(x, ymin, ymax, title):
+    """Methode for creating a boxplot. """
     #TODO : Add Legend for axis
 
     # Create a figure instance

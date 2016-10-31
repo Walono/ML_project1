@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from Methods.proj1_helpers import *
 from Methods.costs import *
 
 def sigmoid(t):
