@@ -12,7 +12,7 @@ def compute_gradient(y, tx, w):
     return -1/N*np.dot(tx.T, e)
 
 
-def gradient_descent(y, tx, **kwargs): 
+def least_squares_GD(y, tx, **kwargs): 
     """Gradient descent algorithm."""
     # Define parameters to store w and loss
     initial_w = kwargs.get('initial_w')
@@ -33,14 +33,8 @@ def gradient_descent(y, tx, **kwargs):
         print("Gradient Descent({bi}/{ti}): loss={l}, w0={w0}, w1={w1}".format(
               bi=n_iter, ti=max_iters - 1, l=loss, w0=w[0], w1=w[1]))
 
-    return ws
+    return ws, np.array(losses)
 
-def least_squares_GD(y, tx, initial_w, max_iters, gamma)
-    w = np.dot(np.dot(np.linalg.inv(np.dot(
-        np.transpose(tx),tx)),np.transpose(tx)),y)
-        ws = gradient_descent(y, tx, w, max_iters, gamma)
-        mse = compute_loss(y, tx, ws)
-    return mse, ws
 
 def least_squares_SGD(y, tx, initial_w, max_iters, gamma)
     ????????????????????????????????????????
@@ -50,7 +44,7 @@ def least_squares(y, tx):
     w = np.dot(np.dot(np.linalg.inv(np.dot(
         np.transpose(tx),tx)),np.transpose(tx)),y)
     mse = compute_loss(y, tx, w)
-    return mse, w
+    return w, mse
 
 def ridge_regression(y, tx, lamb):
     """implement ridge regression."""
@@ -134,7 +128,7 @@ def logistic_regression(y, tx, initial_w, max_iters, gamma):
     # visualization
     #visualization(y, x, mean_x, std_x, w, "classification_by_logistic_regression_gradient_descent")
     print("The scaled loss={l}".format(l=calculate_loss(y, tx, w)))
-    return w
+    return w, losses
 
 def penalized_logistic_regression(y, tx, w, lambda_):
     """return the loss, gradient, and hessian."""
@@ -182,7 +176,7 @@ def reg_logistic_regression(y, tx, lambda_, initial_w, max_iters, gamma):
         if len(losses) > 1 and np.abs(losses[-1] - losses[-2]) < threshold:
             break
     print("The loss={l}".format(l=calculate_loss(y, tx, w)))
-    return w
+    return w, losses
 
 def batch_iter(y, tx, batch_size, num_batches=1, shuffle=True):
     """
