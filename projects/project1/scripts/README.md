@@ -1,8 +1,8 @@
 #Groupe 1 : ML_project1
 
-Project from: Loïs Huguenin : 234887
-Julie Djeffal : 193164
-Fabien Zellweger : 209450
+Project from: Loïs Huguenin : 234887 <br />
+Julie Djeffal : 193164 <br />
+Fabien Zellweger : 209450 <br />
 
 ## Project
 
