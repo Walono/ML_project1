@@ -2,7 +2,7 @@ import numpy as np
 from Methods.costs import * 
 from Methods.split_data import *
 from Methods.scaling_standardization import *
-from Methods.build_polynomial import *
+from Methods.features_processing import *
 from Methods.logistic import *
 from Methods.clearDataset import *
 
