@@ -37,11 +37,6 @@ def calculate_hessian(y, tx, w):
         S[i, i] = prod * (1 - prod)
     h_temp = np.dot(S, tx)
     H = np.dot(tx.T, h_temp)
-    #print(H, "PLOP")
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # calculate hessian: TODO
-    # ***************************************************
     return H
 
 def learning_by_gradient_descent(y, tx, w, gamma):
@@ -50,12 +45,11 @@ def learning_by_gradient_descent(y, tx, w, gamma):
     Return the loss and the updated w.
     """
     loss = calculate_loss(y, tx, w)
-    #loss = compute_loss(y, tx, w[:,0])
 
     grad = calculate_gradient(y, tx, w)
     hess = calculate_hessian(y, tx, w)
     hess_inv = np.linalg.inv(hess)
-    #w = w - gamma * np.array([grad]).T
+
     w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
     return loss, w
 
@@ -66,7 +60,6 @@ def logistic_regression_gradient_descent_n(y, tx, gamma, max_iters):
     losses = []
 
     w = np.zeros((tx.shape[1], 1))
-    #w = np.array([w]).T
 
     # start the logistic regression
     for iter in range(max_iters):
@@ -81,9 +74,6 @@ def logistic_regression_gradient_descent_n(y, tx, gamma, max_iters):
         losses.append(loss)
         if len(losses) > 1 and np.abs(losses[-1] - losses[-2]) < threshold:
             break
-    # visualization
-    #visualization(y, x, mean_x, std_x, w, "classification_by_logistic_regression_gradient_descent")
-    print("The scaled loss={l}".format(l=calculate_loss(y, tx, w)))
     return w
 
 def penalized_logistic_regression(y, tx, w, lambda_):
