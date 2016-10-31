@@ -1,4 +1,4 @@
-###Groupe 1 : ML_project1
+#Groupe 1 : ML_project1
 
 Project from: Loïs Huguenin : 234887
 Julie Djeffal : 193164
@@ -13,7 +13,7 @@ Fabien Zellweger : 209450
 
 ## How to execute the code
 
-- Add the tain.csv and test.csv in the 'csv' folder
+- Add the tain.csv and test.csv in the 'CSV' folder
 - Run run.py
 - Remember to like cats
 
