@@ -6,9 +6,9 @@ Fabien Zellweger : 209450 <br />
 
 ## Project
 
-- The run.py file is used to generate the csv file that give us our best results.
-- Implementations.py refer to the 6 methods we were asked to provide.
-- CSV folder. Empty because the train.csv and test.csv are too big for us. You have to add they in this folder
+- The run.py file is used to generate the csv file that gives us our best results.
+- implementations.py refer to the 6 methods we were asked to provide.
+- csv folder. Empty because the train.csv and test.csv are too big for us. You have to add they in this folder
 - Methods folder contains all the helper *.py file used by run.py and all our tests.
 
 ## Mandatory Methods Warning
@@ -34,11 +34,11 @@ Fabien Zellweger : 209450 <br />
 - Then logistic regression with newton's method and mini-batch of 3000 entries is performed, max_iters = 750, gamma = 0.005
 ## How to execute the code
 
-- Add the train.csv and test.csv in the 'CSV' folder
+- Add the train.csv and test.csv in the 'csv' folder
 - Run run.py
 - Wait some time, the transformations take time and the logistic regression takes 750 steps (few minutes on our computers)
-- The predictions are put in the CSV folder
+- The predictions are put in the 'csv' folder
 
 ## Helper methods
 
-- They all have an explicite name of what they doing, or have comment inside
+- They all have an explicit name of what they do, or are commented

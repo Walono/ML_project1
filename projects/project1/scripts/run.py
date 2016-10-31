@@ -11,7 +11,7 @@ from Methods.proj1_helpers import *
 DATA_TRAIN_PATH = 'csv/train.csv'
 y, tX, ids = load_csv_data(DATA_TRAIN_PATH)
 
-DATA_TEST_PATH = 'csv/test.csv' # TODO: download train data and supply path here 
+DATA_TEST_PATH = 'csv/test.csv'
 _, tX_test, ids_test = load_csv_data(DATA_TEST_PATH)
 
 tX, tX_test = averageData(tX, tX_test)
@@ -35,5 +35,5 @@ pred_log = pred_log[:,0]
 pred_log[pred_log >= 0.5] = 1
 pred_log[pred_log < 0.5] = -1
 
-OUTPUT_PATH = 'csv/sample-submissiont.csv'
+OUTPUT_PATH = 'csv/submission.csv'
 create_csv_submission(ids_test, pred_log, OUTPUT_PATH)
