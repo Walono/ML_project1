@@ -4,7 +4,6 @@ from Methods.split_data import *
 from Methods.scaling_standardization import *
 from Methods.build_polynomial import *
 from Methods.logistic import *
-from Methods.scaling_standardization import *
 from Methods.clearDataset import *
 
 from Methods.proj1_helpers import *
@@ -29,12 +28,12 @@ tX = tX.T
 y_binary = np.copy(y)
 y_binary[y_binary == -1] = 0
 X_log_tr, y_bin_tr, X_log_te, y_bin_te = split_data(tX, y_binary, 0.7) 
-w_log = logistic_regression_gradient_descent(y_bin_tr, X_log_tr, 0.005, 750)
+w_log = logistic_regression_gradient_descent_n(y_bin_tr, X_log_tr, 0.005, 750)
 
 pred_log = sigmoid(np.dot(tX_test.T, w_log))
 pred_log = pred_log[:,0]
 pred_log[pred_log >= 0.5] = 1
 pred_log[pred_log < 0.5] = -1
 
-OUTPUT_PATH = 'csv/sample-submission1.csv'
+OUTPUT_PATH = 'csv/sample-submissiont.csv'
 create_csv_submission(ids_test, pred_log, OUTPUT_PATH)
