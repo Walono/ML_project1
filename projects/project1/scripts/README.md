@@ -6,16 +6,38 @@ Fabien Zellweger : 209450
 
 ## Project
 
-- The run.py file is used to generate the csv file that give us our best resulte.
-- Implementation.py refer to the 6 methods we were asked to provide.
+- The run.py file is used to generate the csv file that give us our best results.
+- Implementations.py refer to the 6 methods we were asked to provide.
 - CSV folder. Empty because the train.csv and test.csv are too big for us. You have to add they in this folder
-- Methods folder contains all the helper *.py file used by run.py and all our test.
+- Methods folder contains all the helper *.py file used by run.py and all our tests.
 
+## Mandatory Methods Warning
+- For least_squares_GD and least_squares_SGD the init weights MUST be a 1D vector
+
+## Data Preparation
+- To scale the data, the method data_scaling in scaling_standardization.py is used
+- For the simpler models, we simply used the build_poly_matrix method in build_poly.py
+- For our best ML model, we loop on the column of tX and use the add_feature method in build_poly.py (see run.py for example)
+
+## Model analysis
+- All RMSE are computed with the error e = y - prediction(dot(X, w_train)) and not e = y - dot(X, w_train)
+- Before logistic regression, all -1 in y are replaced by 0 and the inverse operation is done once we have the predictions
+- One step of CV is performed by the cross_validation method in cross_validation.py, hence to compute complete CV you must compute:
+  k_indices = build_k_indices(y, k_fold, seed)
+  for k in k_fold
+      loss_tr, loss_te, accuracy, w_tr = cross_validation(y, x, k_indices, k, model, parameters for the model)
+
+  Where k_indices is a method in cross_validation.py
+
+## Best Model
+- The best model is computed on 70% of transformed data, we use split_data(x, y_binary, 0.7) which is a method in split_data.py
+- Then logistic regression with newton's method and mini-batch of 3000 entries is performed, max_iters = 750, gamma = 0.005
 ## How to execute the code
 
-- Add the tain.csv and test.csv in the 'CSV' folder
+- Add the train.csv and test.csv in the 'CSV' folder
 - Run run.py
-- Remember to like cats
+- Wait some time, the transformations take time and the logistic regression takes 750 steps (few minutes on our computers)
+- The predictions are put in the CSV folder
 
 ## Helper methods
 
