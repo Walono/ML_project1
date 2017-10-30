@@ -17,11 +17,22 @@ _, tX_test, ids_test = load_csv_data(DATA_TEST_PATH)
 tX, tX_test = averageData(tX, tX_test)
 tX, tX_test = data_scaling(tX.T, tX_test.T)
 
-for i in range(0, 30): 
+for i in range(0, 30):
     tX, tX_test = add_feature(y, tX[i], tX, log_def, tX_test, tX_test[i])
     tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=2)
+    tX, tX_test = add_feature(y, tX[i], tX, sqrt_def, tX_test, tX_test[i])
     tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=3)
-    tX, tX_test = add_feature(y, tX[i], tX, sqrt_def, tX_test, tX_test[i])  
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=4)
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=5)
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=6)
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=7)
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=8)
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=9)
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=10)
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=11)
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=12)
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=13)
+    tX, tX_test = add_feature(y, tX[i], tX, multiply, tX_test, tX_test[i], degree=14)
 
 tX = tX.T
 
