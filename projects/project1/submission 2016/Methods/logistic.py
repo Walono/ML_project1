@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from Methods.proj1_helpers import *
 from Methods.costs import *
 
 def sigmoid(t):
@@ -48,7 +47,7 @@ def learning_by_gradient_descent(y, tx, w, gamma):
 
     grad = calculate_gradient(y, tx, w)
     hess = calculate_hessian(y, tx, w)
-    hess_inv = np.linalg.pinv(hess)
+    hess_inv = np.linalg.inv(hess)
 
     w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
     return loss, w
