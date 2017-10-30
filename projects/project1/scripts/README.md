@@ -1,7 +1,7 @@
 #Groupe 1 : ML_project1
 
-Project from: Loïs Huguenin : 234887 <br />
-Julie Djeffal : 193164 <br />
+Project from: Romain Gehrig : 223316 <br />
+Sourabh Lal : 256686 <br />
 Fabien Zellweger : 209450 <br />
 
 ## Project
@@ -14,8 +14,12 @@ Fabien Zellweger : 209450 <br />
 ## Mandatory Methods Warning
 - For least_squares_GD and least_squares_SGD the init weights MUST be a 1D vector
 
+## Boxplots
+- The boxplots are plotted by the boxplot method from plots.py
+
 ## Data Preparation
-- To scale the data, the method data_scaling in scaling_standardization.py is used
+- To also use all data containing missing value, the method averageData in clearDataset.py is used.
+- To scale the data, the method data_scaling in scaling_standardization.py is used.
 - For the simpler models, we simply used the build_poly_matrix method in build_poly.py
 - For our best ML model, we loop on the column of tX and use the add_feature method in build_poly.py (see run.py for example)
 
@@ -31,7 +35,8 @@ Fabien Zellweger : 209450 <br />
 
 ## Best Model
 - The best model is computed on 70% of transformed data, we use split_data(x, y_binary, 0.7) which is a method in split_data.py
-- Then logistic regression with newton's method and mini-batch of 3000 entries is performed, max_iters = 750, gamma = 0.005
+- Then logistic regression with newton's method and mini-batch of 3000 entries is performed, max_iters = 750, gamma = 0.005, for that we use logistic_regression_n from logistic.py
+
 ## How to execute the code
 
 - Add the train.csv and test.csv in the 'csv' folder
@@ -41,4 +46,13 @@ Fabien Zellweger : 209450 <br />
 
 ## Helper methods
 
-- They all have an explicit name of what they do, or are commented
+- build_polynomial.py Contains methods for features transformations
+- clearDataset.py Contains methods to remove -999 (used to try model with this data cleaning method)
+- costs.py Methods to compute mse, mae, ...
+- cross_validation.py Methods for cross validation
+- helpers.py Some useful methods
+- logistic Logistic regression with newton's method
+- plots.py Boxplots
+- proj1_helpers.py Load, generate csv
+- scaling_standardization.py Methods to scale and standardize data
+- split_data Methods to split the data randomly
