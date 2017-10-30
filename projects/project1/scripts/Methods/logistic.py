@@ -48,7 +48,7 @@ def learning_by_gradient_descent(y, tx, w, gamma):
 
     grad = calculate_gradient(y, tx, w)
     hess = calculate_hessian(y, tx, w)
-    hess_inv = np.linalg.inv(hess)
+    hess_inv = np.linalg.pinv(hess)
 
     w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
     return loss, w
