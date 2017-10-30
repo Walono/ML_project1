@@ -1,7 +1,7 @@
 #Groupe 1 : ML_project1
 
-Project from: Loïs Huguenin : 234887 <br />
-Julie Djeffal : 193164 <br />
+Project from: Romain Gehrig : 223316 <br />
+Sourabh Lal : 256686 <br />
 Fabien Zellweger : 209450 <br />
 
 ## Project
@@ -11,9 +11,6 @@ Fabien Zellweger : 209450 <br />
 - csv folder. Empty because the train.csv and test.csv are too big for us. You have to add they in this folder
 - Methods folder contains all the helper *.py file used by run.py and all our tests.
 
-# Run.py WARNING !!!!
-- run.py gives our best predictions on Ubuntu 14.04 x64 kernel v.3.16 but apparently have error on Windows and MacOSx (singular hessian matrix)
-
 ## Mandatory Methods Warning
 - For least_squares_GD and least_squares_SGD the init weights MUST be a 1D vector
 
@@ -21,7 +18,8 @@ Fabien Zellweger : 209450 <br />
 - The boxplots are plotted by the boxplot method from plots.py
 
 ## Data Preparation
-- To scale the data, the method data_scaling in scaling_standardization.py is used
+- To also use all data containing missing value, the method averageData in clearDataset.py is used.
+- To scale the data, the method data_scaling in scaling_standardization.py is used.
 - For the simpler models, we simply used the build_poly_matrix method in build_poly.py
 - For our best ML model, we loop on the column of tX and use the add_feature method in build_poly.py (see run.py for example)
 
