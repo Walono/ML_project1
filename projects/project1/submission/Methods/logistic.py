@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from Methods.proj1_helpers import *
 from Methods.costs import *
 
 def sigmoid(t):
@@ -47,7 +48,7 @@ def learning_by_gradient_descent(y, tx, w, gamma):
 
     grad = calculate_gradient(y, tx, w)
     hess = calculate_hessian(y, tx, w)
-    hess_inv = np.linalg.inv(hess)
+    hess_inv = np.linalg.pinv(hess)
 
     w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
     return loss, w
@@ -94,7 +95,7 @@ def learning_by_penalized_gradient(y, tx, w, gamma, lambda_):
     # return loss, gradient and hessian
     # ***************************************************
     loss, grad, hess = penalized_logistic_regression(y, tx, w, lambda_)
-    hess_inv = np.linalg.inv(hess)
+    hess_inv = np.linalg.pinv(hess)
     w = w - gamma * np.array([np.dot(hess_inv, grad)]).T
     #w = w - gamma * np.array([grad]).T
     return loss, w
